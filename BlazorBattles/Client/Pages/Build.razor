@@ -1,0 +1,38 @@
+﻿@page "/build"
+@inject IGoldService GoldService
+@inject IUnitService UnitService
+@inject IToastService ToastService
+@attribute [Authorize]
+
+<h3>Build</h3>
+<div class="form-group">
+    <select @bind="selectedUnitId" class="form-control">
+        @foreach (var unit in UnitService.Units)
+        {
+            <option value="@unit.Id">@unit.Title - @unit.GoldCost gold</option>
+        }
+    </select>
+</div>
+<button class="btn btn-primary" @onclick="BuildUnit">Build</button>
+
+@if (needMoreGold)
+            {
+                <div class="validation-message">
+                    Not enough gold!
+                </div>
+            }
+
+@code {
+    int selectedUnitId = 1;
+    bool needMoreGold = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UnitService.LoadUnitsAsync();
+    }
+
+    public async Task BuildUnit()
+    {
+        await UnitService.AddUnit(selectedUnitId);
+    }
+}

@@ -1,0 +1,37 @@
+﻿@inject IGoldService GoldService
+@implements IDisposable
+
+    <AuthorizeView>
+        <Authorized>
+            <div class="top-menu">
+                <img src="icons/gold.png" style="height: 30px; margin-right: 10px;" />
+                <span class="popover-header">
+                    @GoldService.Gold
+                </span>
+
+                <AddGold />
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <div>
+                <NavLink href="">Login</NavLink>
+                <NavLink href="register">Register</NavLink>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
+
+    @code {
+
+        protected override void OnInitialized()
+        {
+            GoldService.OnChange += StateHasChanged;
+        }
+
+        public void Dispose()
+        {
+            GoldService.OnChange -= StateHasChanged;
+        }
+
+    }
+
+
