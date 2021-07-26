@@ -28,7 +28,9 @@ namespace BlazorBattles.Server.Controllers
                     Gold = request.Gold,
                     DateOfBirth = request.DateOfBirth,
                     IsConfirmed = request.IsConfirmed
-                }, request.Password);
+                }, 
+                request.Password,
+                request.StartUnitId);
             
             if (!response.Success)
             {

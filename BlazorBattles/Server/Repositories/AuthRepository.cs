@@ -47,7 +47,7 @@ namespace BlazorBattles.Server.Repositories
             return response;
         }
 
-        public async Task<ServiceResponse<int>> Register(AppUser appUser, string password)
+        public async Task<ServiceResponse<int>> Register(AppUser appUser, string password, int startUnitId)
         {
             if (await UserExists(appUser.Email))
             {
@@ -61,6 +61,8 @@ namespace BlazorBattles.Server.Repositories
 
             _context.AppUsers.Add(appUser);
             await _context.SaveChangesAsync();
+
+            await AddStartingUnit(appUser, startUnitId);
 
             return new ServiceResponse<int> { Data = appUser.Id, Message = "User created!" };
         }
@@ -121,6 +123,19 @@ namespace BlazorBattles.Server.Repositories
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
             return jwt;
+        }
+
+        private async Task AddStartingUnit(AppUser appUser, int startUnitId)
+        {
+            var unit = await _context.Units.FirstOrDefaultAsync<Unit>(x => x.Id == startUnitId);
+
+            _context.UserUnits.Add(new UserUnit
+            {
+                UnitId = unit.Id,
+                UserId = appUser.Id,
+                HitPoints = unit.HitPoints
+            });
+            await _context.SaveChangesAsync();
         }
     }
 }

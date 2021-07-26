@@ -139,7 +139,7 @@ using Blazored.LocalStorage;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\Shared\NavMenu.razor"
+#line 59 "C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

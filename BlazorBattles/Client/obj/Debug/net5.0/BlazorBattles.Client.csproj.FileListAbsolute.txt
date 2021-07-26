@@ -660,3 +660,9 @@ C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\bin\Debug\net5
 C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\Razor\Shared\Login.razor.g.cs
 C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\build-gz\MzVZP0nN.gz
 C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\build-gz\n9P0NDnR.gz
+C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Leaderboard.razor.g.cs
+C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\Razor\Pages\Leaderboard.razor.g.cs
+C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\RazorDeclaration\Pages\BattleLog.razor.g.cs
+C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\Razor\Pages\BattleLog.razor.g.cs
+C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\RazorDeclaration\Pages\History.razor.g.cs
+C:\Users\dszemenk\source\repos\BlazorBattles\BlazorBattles\Client\obj\Debug\net5.0\Razor\Pages\History.razor.g.cs

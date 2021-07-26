@@ -24,6 +24,44 @@ namespace BlazorBattles.Server.Controllers
             _utilityService = utilityService;
         }
 
+        [HttpPost("revive")]
+        public async Task<IActionResult> ReviveArmy()
+        {
+            var user = await _utilityService.GetUser();
+            var userUnits = await _context.UserUnits
+                .Where(x => x.UserId == user.Id)
+                .Include(x => x.Unit)
+                .ToListAsync();
+
+            int goldCost = 1000;
+
+            if (user.Gold < goldCost)
+            {
+                return BadRequest("Not enough gold. You will need 1000 gold to revive your army.");
+            }
+
+            user.Gold -= goldCost;
+
+            bool armyAlreadyAlive = true;
+            foreach (var userUnit in userUnits)
+            {
+                if (userUnit.HitPoints <= 0)
+                {
+                    armyAlreadyAlive = false;
+                    userUnit.HitPoints = new Random().Next(0, userUnit.Unit.HitPoints);
+                }
+            }
+
+            if (armyAlreadyAlive)
+                return Ok("Army already alive.");
+
+            user.Gold -= goldCost;
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Army revivied");
+        }
+
         [HttpPost]
         public async Task<IActionResult> BuildUserUnit([FromBody] int unitId)
         {
